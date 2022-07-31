@@ -58,7 +58,7 @@ require_once 'config.php';
       <ul>
         <li><a href="index.html" class="active">Početna</a></li>
         <li><a href="about.html">O nama</a></li>
-        <li><a href="services.html">Fotografi</a></li>
+        <li><a href="photographer.html">Fotografi</a></li>
         <li><a class="get-a-quote" href="login.php">Prijavi se</a></li>
       </ul>
     </nav><!-- .navbar -->
@@ -158,7 +158,7 @@ require_once 'config.php';
         <ul>
           <li><a href="index.html">Početna</a></li>
           <li><a href="about.html">O nama</a></li>
-          <li><a href="services.html">Fotografi</a></li>
+          <li><a href="photographer.html">Fotografi</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">

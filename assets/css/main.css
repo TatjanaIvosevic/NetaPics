@@ -396,6 +396,21 @@ section {
     background: #2756ff;
   }
 
+  ..download,
+  ..download:focus {
+    background: var(--color-primary);
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 4px;
+    color: #fff;
+  }
+
+  .download:hover,
+  .download:focus:hover {
+    color: #fff;
+    background: #2756ff;
+  }
+
   .navbar .dropdown ul {
     display: block;
     position: absolute;
