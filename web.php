@@ -11,34 +11,32 @@ $firstname = "";
 $lastname = "";
 $email = "";
 $action = "";
+$message = "";
+$user_type = "";
 
 $referer = $_SERVER['HTTP_REFERER'];
 $action = mysqli_real_escape_string($connection, $_POST["action"]);
 
-
-if ($action != "" AND in_array($action, $actions) AND strpos($referer, SITE) !== false) {
+if ($action != "" AND in_array($action, $actions)) {
 
 
     switch ($action) {
         case "login":
-
             $username = mysqli_real_escape_string($connection, trim($_POST["username"]));
             $password = mysqli_real_escape_string($connection, trim($_POST["password"]));
 
             if (!empty($username) AND !empty($password)) {    
                 $data = checkUserLogin($username, $password);
-
-                if ($data AND is_int($data['id_user'])) {
-                    // session_regenerate_id();
+                if ($data AND is_int($data['id'])) {
                     $_SESSION['username'] = $username;
-                    $_SESSION['id_user'] = $data['id_user'];
+                    $_SESSION['id_user'] = $data['id'];
                     redirection('menu.php');
                 } else {
-                    redirection('index.php?l=1');
+                    redirection('registration.php?l=1');
                 }
 
             } else {
-                redirection('index.php?l=1');
+                redirection('registration.php?l=1');
             }
             break;
 
@@ -69,46 +67,54 @@ if ($action != "" AND in_array($action, $actions) AND strpos($referer, SITE) !==
                  $email = mysqli_real_escape_string($connection, trim($_POST["email"]));
             }
 
+            if (isset($_POST['message'])) {
+                $message = mysqli_real_escape_string($connection, trim($_POST["message"]));
+            }
+
+            if (isset($_POST['user_type'])) {
+                $user_type = mysqli_real_escape_string($connection, trim($_POST["user_type"]));
+            }
+
             if (empty($username)) {
-                redirection('index.php?r=4');
+                redirection('registration.php?r=4');
             }
 
             if (empty($firstname)) {
-                redirection('index.php?r=4');
+                redirection('registration.php?r=4');
             }
 
             if (empty($lastname)) {
-                redirection('index.php?r=4');
+                redirection('registration.php?r=4');
             }
 
             if (empty($password) OR strlen($password) < 7) {
-                redirection('index.php?r=9');
+                redirection('registration.php?r=9');
             }
 
             if (empty($passwordConfirm) OR strlen($passwordConfirm) < 7) {
-                redirection('index.php?r=9');
+                redirection('registration.php?r=9');
             }
 
             if ($password !== $passwordConfirm) {
-                redirection('index.php?r=7');
+                redirection('registration.php?r=7');
             }
 
             if (empty($email) OR !filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                redirection('index.php?r=8');
+                redirection('registration.php?r=8');
             }
 
             if (!existsUser($username)) {
                 $token = createCode(40);
-                $id_user_web = registerUser($username, $password, $firstname, $lastname, $email, $token);
+                $id_user_web = registerUser($username, $password, $firstname, $lastname, $email, $token, $message, $user_type);
                 if (sendData($username, $email, $token)) {
-                    redirection("index.php?r=3");
+                    redirection("registration.php?r=3");
                 } else {
                     addEmailFailure($id_user_web);
-                    redirection("index.php?r=10");
+                    redirection("registration.php?r=10");
                 }
 
             } else {
-                redirection('index.php?r=2');
+                redirection('registration.php?r=2');
             }
 
             break;
@@ -118,10 +124,10 @@ if ($action != "" AND in_array($action, $actions) AND strpos($referer, SITE) !==
             break;
 
         default:
-            redirection('index.php?l=0');
+            redirection('registration.php?l=0');
             break;
     }
 
 } else {
-    redirection('index.php?l=0');
+    redirection('registration.php?l=0');
 }
