@@ -24,7 +24,7 @@ function checkUserLogin($username, $enteredPassword)
 {
     global $connection;
 
-    $sql = "SELECT id_user, password FROM users_web 
+    $sql = "SELECT id, password FROM users 
             WHERE username = '$username'
             AND active=1 LIMIT 0,1";
 
@@ -34,7 +34,7 @@ function checkUserLogin($username, $enteredPassword)
 
     if (mysqli_num_rows($result) > 0) {
         while ($record = mysqli_fetch_array($result)) {
-            $data['id_user'] = (int)$record['id_user'];
+            $data['id'] = (int)$record['id'];
             $registeredPassword = $record['password'];
         }
 
@@ -57,7 +57,7 @@ function existsUser($username)
 {
     global $connection;
 
-    $sql = "SELECT id_user FROM users_web
+    $sql = "SELECT id FROM users
             WHERE username = '$username' AND (registration_expires>now() OR active ='1')";
 
     $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
@@ -80,15 +80,15 @@ function existsUser($username)
  * @param $code
  * @return int
  */
-function registerUser($username, $password, $firstname, $lastname, $email, $token)
+function registerUser($username, $password, $firstname, $lastname, $email, $token, $message, $user_type)
 {
 
     global $connection;
 
     $passwordHashed = password_hash($password, PASSWORD_DEFAULT);
 
-    $sql = "INSERT INTO users_web (username,password,firstname,lastname,email,token,registration_expires,active)
-             VALUES ('$username','$passwordHashed','$firstname','$lastname','$email','$token',DATE_ADD(now(),INTERVAL 1 DAY),0)";
+    $sql = "INSERT INTO users (username,password,firstname,lastname,email,token,registration_expires,active, bio, user_type)
+             VALUES ('$username','$passwordHashed','$firstname','$lastname','$email','$token',DATE_ADD(now(),INTERVAL 1 DAY),0, '$message', '$user_type')";
 
     // http://dev.mysql.com/doc/refman/5.6/en/date-and-time-functions.html
 
@@ -149,7 +149,7 @@ function sendData($username, $email, $token)
     $header .= "Content-Type: text/html; charset=UTF-8\n";
 
     $message = "Data:\n\n user: $username \n \n www.vts.su.ac.rs";
-    $message .= "\n\n to activate your account click on the link: " . SITE . "active.php?token=$token";
+    $message .= "\n\n to activate your account click on the link: http://localhost/NetaPics/active.php?token=$token";
     $to = $email;
     $subject = "Registration at VTS";
     return mail($to, $subject, $message, $header);

@@ -1,3 +1,6 @@
+<?php
+require_once 'config.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,7 +59,7 @@
                 <li><a href="index.html" class="active">Početna</a></li>
                 <li><a href="about.html">O nama</a></li>
                 <li><a href="services.html">Fotografi</a></li>
-                <li><a class="get-a-quote" href="get-a-quote.html">Prijavi se</a></li>
+                <li><a class="get-a-quote" href="login.php">Prijavi se</a></li>
             </ul>
         </nav><!-- .navbar -->
 
@@ -95,19 +98,19 @@
                 <div class="col-lg-5 quote-bg" style="background-image: url(assets/img/quote-bg.jpg);"></div>
 
                 <div class="col-lg-7">
-                    <form action="forms/quote.php" method="post" class="php-email-form">
+                    <form action="web.php" method="post" class="php-email-form">
                         <h3 align="center">Registracija</h3>
                         <br>
                         <div class="row gy-4">
 
                             <div class="col-md-12">
                                 <label>Ime:</label>
-                                <input type="text" name="name" class="form-control" placeholder="Ime" required>
+                                <input type="text" name="firstname" class="form-control" placeholder="Ime" required>
                             </div>
 
                             <div class="col-md-12">
                                 <label>Prezime:</label>
-                                <input type="text" class="form-control" name="surname" placeholder="Prezime" required>
+                                <input type="text" class="form-control" name="lastname" placeholder="Prezime" required>
                             </div>
 
                             <div class="col-md-12 ">
@@ -120,7 +123,17 @@
                                 <input type="text" class="form-control" name="username" placeholder="Korisničko ime" required>
                             </div>
 
+                            <div class="col-md-12">
+                                <label>Lozinka:</label>
+                                <input type="password" class="form-control" name="password" placeholder="Lozinka" required>
+                            </div>
 
+                            <div class="col-md-12">
+                                <label>Ponovo lozinka:</label>
+                                <input type="password" class="form-control" name="passwordConfirm" placeholder="Korisničko ime" required>
+                            </div>
+
+                            <input type="hidden" name="action" value="register">
 
                             <div class="col-md-12 ">
                                 <label>Kako želiš da koristiš profil?</label>
@@ -137,6 +150,23 @@
                                 <label>Napiši nešto o sebi:</label>
                                 <textarea class="form-control" name="message" rows="6" placeholder="Biografija" required></textarea>
                             </div>
+
+                            <?php
+                            // index.php?r=1
+                            $r = 0;
+
+                            if (isset($_GET["r"]) and is_numeric($_GET['r'])) {
+                                $r = (int)$_GET["r"];
+
+                                if (array_key_exists($r, $messages)) {
+                                    echo '
+                    <div class="alert alert-info fade show m-3" role="alert">
+                        '.$messages[$r].'
+                    </div>
+                    ';
+                                }
+                            }
+                            ?>
 
                             <div class="col-md-12 text-center">
                                 <div class="loading">Učitavanje...</div>
@@ -214,7 +244,7 @@
 <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
 <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
 <script src="assets/vendor/aos/aos.js"></script>
-<script src="assets/vendor/php-email-form/validate.js"></script>
+<!--<script src="assets/vendor/php-email-form/validate.js"></script>-->
 
 <!-- Template Main JS File -->
 <script src="assets/js/main.js"></script>
