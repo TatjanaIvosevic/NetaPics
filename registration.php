@@ -50,10 +50,9 @@ require_once 'config.php';
         <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a href="index.html" class="active">Početna</a></li>
-                <li><a href="about.html">O nama</a></li>
-                <li><a href="photographer.html">Fotografi</a></li>
-                <li><a class="get-a-quote" href="login.php">Prijavi se</a></li>
+                <li><a href="index.php" class="active">Početna</a></li>
+                <li><a href="about.php">O nama</a></li>
+                <li><a href="photographer.php">Fotografi</a></li>
             </ul>
         </nav><!-- .navbar -->
 

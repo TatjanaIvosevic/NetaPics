@@ -52,13 +52,19 @@
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="photographer.html">Services</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li class="dropdown"><a href="#"><span>Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
+          <ul>
+              <li><a href="index.php" class="active">Početna</a></li>
+              <li><a href="about.php">O nama</a></li>
+              <li><a href="photographer.php">Fotografi</a></li>
+              <?php
+              if (isset($_SESSION["id_user"])) {
+                  echo "<li><a href='logout.php'>Odjavi se</a></li>";
+              } else {
+                  echo "<li><a class='get-a-quote' href='login.php'>Prijavi se</a></li>";
+              }
+              ?>
+
+          </ul>
               <li><a href="#">Drop Down 1</a></li>
               <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                 <ul>

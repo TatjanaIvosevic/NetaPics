@@ -32,12 +32,6 @@ require_once 'config.php';
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Logis - v1.0.1
-  * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body>
@@ -47,20 +41,23 @@ require_once 'config.php';
   <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
     <a href="index.html" class="logo d-flex align-items-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
-      <!-- <img src="assets/img/logo.png" alt=""> -->
       <h1>NetaPics</h1>
     </a>
 
     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     <nav id="navbar" class="navbar">
-      <ul>
-        <li><a href="index.html" class="active">Početna</a></li>
-        <li><a href="about.html">O nama</a></li>
-        <li><a href="photographer.html">Fotografi</a></li>
-        <li><a class="get-a-quote" href="login.php">Prijavi se</a></li>
-      </ul>
+        <ul>
+            <li><a href="index.php" class="active">Početna</a></li>
+            <li><a href="about.php">O nama</a></li>
+            <li><a href="photographer.php">Fotografi</a></li>
+            <?php
+            if (isset($_SESSION["id_user"])) {
+                echo "<li><a href='logout.php'>Odjavi se</a></li>";
+            }
+            ?>
+
+        </ul>
     </nav><!-- .navbar -->
 
   </div>

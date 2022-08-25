@@ -5,6 +5,7 @@ include 'db_config.php';
 if (isset($_POST['upload'])){
     $img = $_FILES['img'];
 
+    $imgTitle = $_POST['title'];
     $imgName = $_FILES['img']['name'];
     $imgTmpName = $_FILES['img']['tmp_name'];
     $imgSize = $_FILES['img']['size'];
@@ -23,7 +24,7 @@ if (isset($_POST['upload'])){
                 $imgDestination = 'photos/'.$imgNameNew;
                 move_uploaded_file($imgTmpName, $imgDestination);
 
-                $sql = "INSERT INTO images (id_user, title, image) VALUES (1, 'slika', '$imgDestination')";
+                $sql = "INSERT INTO images (id_user, title, image) VALUES (1, '$imgTitle', '$imgDestination')";
                 if (!empty($connection)) {
                     mysqli_query($connection, $sql);
                     header("Location: profile.php?uploadsuccess");

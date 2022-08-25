@@ -48,12 +48,17 @@ require_once 'db_config.php';
     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     <nav id="navbar" class="navbar">
-      <ul>
-        <li><a href="index.html" class="active">Početna</a></li>
-        <li><a href="about.html">O nama</a></li>
-        <li><a href="photographer.html">Fotografi</a></li>
-        <li><a class="get-a-quote" href="logout.php.php">Odjavi se</a></li>
-      </ul>
+        <ul>
+            <li><a href="index.php" class="active">Početna</a></li>
+            <li><a href="about.php">O nama</a></li>
+            <li><a href="photographer.php">Fotografi</a></li>
+            <?php
+            if (isset($_SESSION["id_user"])) {
+                echo "<li><a href='logout.php'>Odjavi se</a></li>";
+            }
+            ?>
+
+        </ul>
     </nav><!-- .navbar -->
 
   </div>
@@ -92,12 +97,16 @@ require_once 'db_config.php';
           <span>Dodaj novu fotografiju</span>
           <h2>Dodaj novu fotografiju</h2>
 
-
+<div class="get-a-quote">
         <form action="upload.php" method="POST" enctype="multipart/form-data" align="center">
+            <label>Naziv fotografije: </label>
+            <input type="text" name="title" placeholder="Naziv"><br><br><br>
+            <label>Otpremi fotografiju: </label><br><br>
           <input type="file" name="img">
           <button type="submit" name="upload">Dodaj fotografiju</button>
           <br><br>
         </form>
+</div>
         </div>
         <div class="row gy-4">
 

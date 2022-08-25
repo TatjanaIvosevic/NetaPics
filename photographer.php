@@ -45,12 +45,19 @@
     <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     <nav id="navbar" class="navbar">
-      <ul>
-        <li><a href="index.html" class="active">Početna</a></li>
-        <li><a href="about.html">O nama</a></li>
-        <li><a href="photographer.html">Fotografi</a></li>
-        <li><a class="get-a-quote" href="login.php">Prijavi se</a></li>
-      </ul>
+        <ul>
+            <li><a href="index.php" class="active">Početna</a></li>
+            <li><a href="about.php">O nama</a></li>
+            <li><a href="photographer.php">Fotografi</a></li>
+            <?php
+            if (isset($_SESSION["id_user"])) {
+                echo "<li><a href='logout.php'>Odjavi se</a></li>";
+            } else {
+                echo "<li><a class='get-a-quote' href='login.php'>Prijavi se</a></li>";
+            }
+            ?>
+
+        </ul>
     </nav><!-- .navbar -->
 
   </div>
