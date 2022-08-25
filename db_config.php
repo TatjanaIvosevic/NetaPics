@@ -1,4 +1,5 @@
 <?php
+//global $connection;
 if (defined('SECRET') AND SECRET == 'gfhUi34xVbds23Qgk') {
 
     $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);

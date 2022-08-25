@@ -32,12 +32,6 @@ require_once 'config.php';
     <!-- Template Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet">
 
-    <!-- =======================================================
-    * Template Name: Logis - v1.0.1
-    * Template URL: https://bootstrapmade.com/logis-bootstrap-logistics-website-template/
-    * Author: BootstrapMade.com
-    * License: https://bootstrapmade.com/license/
-    ======================================================== -->
 </head>
 
 <body>

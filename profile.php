@@ -1,11 +1,14 @@
-!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/html">
+<?php
+require_once 'db_config.php';
+?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>NetaPics - Fotografi</title>
+  <title>NetaPics - Tvoj profil</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -49,7 +52,7 @@
         <li><a href="index.html" class="active">Početna</a></li>
         <li><a href="about.html">O nama</a></li>
         <li><a href="photographer.html">Fotografi</a></li>
-        <li><a class="get-a-quote" href="login.php">Prijavi se</a></li>
+        <li><a class="get-a-quote" href="logout.php.php">Odjavi se</a></li>
       </ul>
     </nav><!-- .navbar -->
 
@@ -65,9 +68,7 @@
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>Pogledajte sve radove od
-              <?php?>
-              </h2>
+              <h2>Tvoj profil</h2>
             </div>
           </div>
         </div>
@@ -76,7 +77,7 @@
         <div class="container">
           <ol>
             <li><a href="index.html">Početna</a></li>
-            <li>Fotografije</li>
+            <li>Tvoj profil</li>
           </ol>
         </div>
       </nav>
@@ -88,11 +89,16 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <span>Sve fotografije</span>
-          <h2>Sve fotografije</h2>
+          <span>Dodaj novu fotografiju</span>
+          <h2>Dodaj novu fotografiju</h2>
 
+
+        <form action="upload.php" method="POST" enctype="multipart/form-data" align="center">
+          <input type="file" name="img">
+          <button type="submit" name="upload">Dodaj fotografiju</button>
+          <br><br>
+        </form>
         </div>
-
         <div class="row gy-4">
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
@@ -100,8 +106,8 @@
               <div class="card-img">
                 <img src="assets/img/storage-service.jpg" alt="" class="img-fluid">
               </div>
-              <h3 align="center">Img title</h3>
-              <a align="center" style="background: var(--color-primary); padding: 8px 20px; margin-left: 100px; margin-right: 100px; border-radius: 4px; color: #fff;">Preuzmi</a>
+              <h3><a href="service-details.html" class="stretched-link">Storage</a></h3>
+              <p>Cumque eos in qui numquam. Aut aspernatur perferendis sed atque quia voluptas quisquam repellendus temporibus itaqueofficiis odit</p>
             </div>
           </div><!-- End Card Item -->
 
@@ -170,7 +176,7 @@
         <a href="index.html" class="logo d-flex align-items-center">
           <span>NetaPics</span>
         </a>
-        <p>Mi činimo svet lepšim mestom</p>
+        <p>Stvaramo svet lepšim mestom</p>
         <div class="social-links d-flex mt-4">
           <a href="https://www.youtube.com/c/MarkMcGeePhotos" class="youtube"><i class="bi bi-youtube"></i></a>
           <a href="https://www.instagram.com/_sky__photography/" class="instagram"><i class="bi bi-instagram"></i></a>
