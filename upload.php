@@ -23,8 +23,11 @@ if (isset($_POST['upload'])){
                 $imgNameNew = uniqid('', true).".".$imgActualExt;
                 $imgDestination = 'photos/'.$imgNameNew;
                 move_uploaded_file($imgTmpName, $imgDestination);
+                $date = date('Y-m-d');
 
-                $sql = "INSERT INTO images (id_user, title, image) VALUES (1, '$imgTitle', '$imgDestination')";
+                //trenutno je hardkodovano u sql naredbi da se slika uvek uploaduje preko korisnika sa id 2. Treba da se uploaduje preko id ulogovanog usera.
+
+                $sql = "INSERT INTO images (id_user, title, date_uploaded, image) VALUES (2, '$imgTitle', '$date', '$imgDestination')";
                 if (!empty($connection)) {
                     mysqli_query($connection, $sql);
                     header("Location: profile.php?uploadsuccess");

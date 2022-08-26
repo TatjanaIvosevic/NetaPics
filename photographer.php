@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,7 +40,7 @@
 <header id="header" class="header d-flex align-items-center fixed-top">
   <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-    <a href="index.html" class="logo d-flex align-items-center">
+    <a href="index.php" class="logo d-flex align-items-center">
       <!-- Uncomment the line below if you also wish to use an image logo -->
       <!-- <img src="assets/img/logo.png" alt=""> -->
       <h1>NetaPics</h1>
@@ -46,12 +50,14 @@
     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     <nav id="navbar" class="navbar">
         <ul>
-            <li><a href="index.php" class="active">Početna</a></li>
+            <li><a href="index.php">Početna</a></li>
             <li><a href="about.php">O nama</a></li>
-            <li><a href="photographer.php">Fotografi</a></li>
+            <li><a href="photographer.php" class="active">Fotografi</a></li>
             <?php
             if (isset($_SESSION["id_user"])) {
-                echo "<li><a href='logout.php'>Odjavi se</a></li>";
+                echo "<li><a href='profile.php'>Moj profil</a></li>";
+                echo "<li style='color: white; margin-left: 60px;'>".$_SESSION['username']."</li>";
+                echo "<li><a class='get-a-quote' style='margin-left: 10px;' href='logout.php'>Odjavi se</a></li>";
             } else {
                 echo "<li><a class='get-a-quote' href='login.php'>Prijavi se</a></li>";
             }
@@ -81,7 +87,7 @@
       <nav>
         <div class="container">
           <ol>
-            <li><a href="index.html">Početna</a></li>
+            <li><a href="index.php">Početna</a></li>
             <li>Fotografi</li>
           </ol>
         </div>
@@ -173,7 +179,7 @@
   <div class="container">
     <div class="row gy-4">
       <div class="col-lg-5 col-md-12 footer-info">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="index.php" class="logo d-flex align-items-center">
           <span>NetaPics</span>
         </a>
         <p>Stvaramo svet lepšim mestom</p>
@@ -186,9 +192,9 @@
       <div class="col-lg-2 col-6 footer-links">
         <h4>Korisni linkovi</h4>
         <ul>
-          <li><a href="index.html">Početna</a></li>
-          <li><a href="about.html">O nama</a></li>
-          <li><a href="photographer.html">Fotografi</a></li>
+            <li><a href="index.php">Početna</a></li>
+            <li><a href="about.php">O nama</a></li>
+            <li><a href="photographer.php">Fotografi</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">

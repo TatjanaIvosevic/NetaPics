@@ -30,7 +30,7 @@ if ($action != "" AND in_array($action, $actions)) {
                 if ($data AND is_int($data['id'])) {
                     $_SESSION['username'] = $username;
                     $_SESSION['id_user'] = $data['id'];
-                    redirection('menu.php');
+                    redirection('index.php');
                 } else {
                     redirection('registration.php?l=1');
                 }

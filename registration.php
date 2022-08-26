@@ -123,7 +123,7 @@ require_once 'config.php';
 
                             <div class="col-md-12">
                                 <label>Ponovo lozinka:</label>
-                                <input type="password" class="form-control" name="passwordConfirm" placeholder="Korisničko ime" required>
+                                <input type="password" class="form-control" name="passwordConfirm" placeholder="Ponovo lozinka" required>
                             </div>
 
                             <input type="hidden" name="action" value="register">
@@ -164,9 +164,9 @@ require_once 'config.php';
                             <div class="col-md-12 text-center">
                                 <div class="loading">Učitavanje...</div>
                                 <div class="error-message"></div>
-                                <div class="sent-message">Uspešna prijava!</div>
+                                <div class="sent-message">Registracija je uspešna!</div>
 
-                                <button type="submit">Prijavi se</button>
+                                <button type="submit">Registruj se</button>
                             </div>
 
                         </div>

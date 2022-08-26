@@ -40,7 +40,7 @@ require_once 'config.php';
 <header id="header" class="header d-flex align-items-center fixed-top">
   <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-    <a href="index.html" class="logo d-flex align-items-center">
+    <a href="index.php" class="logo d-flex align-items-center">
       <h1>NetaPics</h1>
     </a>
 
@@ -48,15 +48,9 @@ require_once 'config.php';
     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     <nav id="navbar" class="navbar">
         <ul>
-            <li><a href="index.php" class="active">Početna</a></li>
+            <li><a href="index.php">Početna</a></li>
             <li><a href="about.php">O nama</a></li>
             <li><a href="photographer.php">Fotografi</a></li>
-            <?php
-            if (isset($_SESSION["id_user"])) {
-                echo "<li><a href='logout.php'>Odjavi se</a></li>";
-            }
-            ?>
-
         </ul>
     </nav><!-- .navbar -->
 
@@ -79,7 +73,7 @@ require_once 'config.php';
       <nav>
         <div class="container">
           <ol>
-            <li><a href="index.html">Početna</a></li>
+            <li><a href="index.php">Početna</a></li>
             <li>Prijava</li>
           </ol>
         </div>
@@ -140,7 +134,7 @@ require_once 'config.php';
   <div class="container">
     <div class="row gy-4">
       <div class="col-lg-5 col-md-12 footer-info">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="index.php" class="logo d-flex align-items-center">
           <span>NetaPics</span>
         </a>
         <p>Stvaramo svet lepšim mestom</p>
@@ -153,9 +147,9 @@ require_once 'config.php';
       <div class="col-lg-2 col-6 footer-links">
         <h4>Korisni linkovi</h4>
         <ul>
-          <li><a href="index.html">Početna</a></li>
-          <li><a href="about.html">O nama</a></li>
-          <li><a href="photographer.html">Fotografi</a></li>
+            <li><a href="index.php">Početna</a></li>
+            <li><a href="about.php">O nama</a></li>
+            <li><a href="photographer.php">Fotografi</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">

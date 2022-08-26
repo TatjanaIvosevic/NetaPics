@@ -1,5 +1,6 @@
 <?php
-require_once 'db_config.php';
+session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -39,9 +40,7 @@ require_once 'db_config.php';
 <header id="header" class="header d-flex align-items-center fixed-top">
   <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-    <a href="index.html" class="logo d-flex align-items-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
-      <!-- <img src="assets/img/logo.png" alt=""> -->
+    <a href="index.php" class="logo d-flex align-items-center">
       <h1>NetaPics</h1>
     </a>
 
@@ -49,12 +48,14 @@ require_once 'db_config.php';
     <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
     <nav id="navbar" class="navbar">
         <ul>
-            <li><a href="index.php" class="active">Početna</a></li>
+            <li><a href="index.php">Početna</a></li>
             <li><a href="about.php">O nama</a></li>
             <li><a href="photographer.php">Fotografi</a></li>
             <?php
             if (isset($_SESSION["id_user"])) {
-                echo "<li><a href='logout.php'>Odjavi se</a></li>";
+                echo "<li><a href='profile.php' class='active'>Moj profil</a></li>";
+                echo "<li style='color: white; margin-left: 60px;'>".$_SESSION['username']."</li>";
+                echo "<li><a class='get-a-quote' style='margin-left: 10px;' href='logout.php'>Odjavi se</a></li>";
             }
             ?>
 
@@ -81,7 +82,7 @@ require_once 'db_config.php';
       <nav>
         <div class="container">
           <ol>
-            <li><a href="index.html">Početna</a></li>
+            <li><a href="index.php">Početna</a></li>
             <li>Tvoj profil</li>
           </ol>
         </div>
@@ -89,86 +90,57 @@ require_once 'db_config.php';
     </div><!-- End Breadcrumbs -->
 
 
-    <!-- ======= Services Section ======= -->
     <section id="service" class="services pt-0">
       <div class="container" data-aos="fade-up">
+          <div class="section-header">
+              <span>Dodaj novu fotografiju</span>
+              <h2>Dodaj novu fotografiju</h2>
+          </div>
+          <div class="get-a-quote">
+              <form action="upload.php" method="POST" enctype="multipart/form-data" align="center">
+                  <label>Naziv fotografije: </label>
+                  <input type="text" name="title" placeholder="Naziv" required><br><br><br>
+                  <label>Otpremi fotografiju: </label><br><br>
+                  <input type="file" name="img">
+                  <button type="submit" name="upload">Dodaj fotografiju</button>
+                  <br><br>
+              </form>
+          </div>
+<br><br><br>
 
-        <div class="section-header">
-          <span>Dodaj novu fotografiju</span>
-          <h2>Dodaj novu fotografiju</h2>
+          <div class="section-header">
+              <span>Tvoje fotografije</span>
+              <h2>Tvoje fotografije</h2>
+          </div>
 
-<div class="get-a-quote">
-        <form action="upload.php" method="POST" enctype="multipart/form-data" align="center">
-            <label>Naziv fotografije: </label>
-            <input type="text" name="title" placeholder="Naziv"><br><br><br>
-            <label>Otpremi fotografiju: </label><br><br>
-          <input type="file" name="img">
-          <button type="submit" name="upload">Dodaj fotografiju</button>
-          <br><br>
-        </form>
-</div>
-        </div>
         <div class="row gy-4">
+<?php
+    include 'config.php';
+    include 'db_config.php';
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+        $sql = "SELECT * FROM images";
+        $result = mysqli_query($connection, $sql);
+        $resultCheck = mysqli_num_rows($result);
+
+
+          if (isset($_SESSION["id_user"])) {
+              if ($resultCheck > 0) {
+                  while ($row = mysqli_fetch_assoc($result)){
+                      echo '<div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="card">
               <div class="card-img">
-                <img src="assets/img/storage-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Storage</a></h3>
-              <p>Cumque eos in qui numquam. Aut aspernatur perferendis sed atque quia voluptas quisquam repellendus temporibus itaqueofficiis odit</p>
-            </div>
-          </div><!-- End Card Item -->
+              <img src = ';
+                      echo $row["image"];
+                      echo ' class="img-fluid" alt="';
+                      echo $row["title"].'">';
+                      echo '</div><h3 align="center"><a class="stretched-link">';
+                      echo $row["title"];
+                      echo '</a></h3></div></div>';
+                  }
+                }
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/logistics-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Logistics</a></h3>
-              <p>Asperiores provident dolor accusamus pariatur dolore nam id audantium ut et iure incidunt molestiae dolor ipsam ducimus occaecati nisi</p>
-            </div>
-          </div><!-- End Card Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/cargo-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Cargo</a></h3>
-              <p>Dicta quam similique quia architecto eos nisi aut ratione aut ipsum reiciendis sit doloremque oluptatem aut et molestiae ut et nihil</p>
-            </div>
-          </div><!-- End Card Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/trucking-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Trucking</a></h3>
-              <p>Dicta quam similique quia architecto eos nisi aut ratione aut ipsum reiciendis sit doloremque oluptatem aut et molestiae ut et nihil</p>
-            </div>
-          </div><!-- End Card Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/packaging-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Packaging</a></h3>
-              <p>Illo consequuntur quisquam delectus praesentium modi dignissimos facere vel cum onsequuntur maiores beatae consequatur magni voluptates</p>
-            </div>
-          </div><!-- End Card Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/warehousing-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Warehousing</a></h3>
-              <p>Quas assumenda non occaecati molestiae. In aut earum sed natus eatae in vero. Ab modi quisquam aut nostrum unde et qui est non quo nulla</p>
-            </div>
-          </div><!-- End Card Item -->
+          }
+?>
 
         </div>
 
@@ -182,7 +154,7 @@ require_once 'db_config.php';
   <div class="container">
     <div class="row gy-4">
       <div class="col-lg-5 col-md-12 footer-info">
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="index.php" class="logo d-flex align-items-center">
           <span>NetaPics</span>
         </a>
         <p>Stvaramo svet lepšim mestom</p>
@@ -195,9 +167,9 @@ require_once 'db_config.php';
       <div class="col-lg-2 col-6 footer-links">
         <h4>Korisni linkovi</h4>
         <ul>
-          <li><a href="index.html">Početna</a></li>
-          <li><a href="about.html">O nama</a></li>
-          <li><a href="photographer.html">Fotografi</a></li>
+            <li><a href="index.php">Početna</a></li>
+            <li><a href="about.php">O nama</a></li>
+            <li><a href="photographer.php">Fotografi</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">

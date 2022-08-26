@@ -1,3 +1,7 @@
+<?php
+session_start();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -52,7 +56,9 @@
           <li><a href="photographer.php">Fotografi</a></li>
             <?php
             if (isset($_SESSION["id_user"])) {
-                echo "<li><a href='logout.php'>Odjavi se</a></li>";
+                echo "<li><a href='profile.php'>Moj profil</a></li>";
+                echo "<li style='color: white; margin-left: 60px;'>".$_SESSION['username']."</li>";
+                echo "<li><a class='get-a-quote' style='margin-left: 10px;' href='logout.php'>Odjavi se</a></li>";
             } else {
                 echo "<li><a class='get-a-quote' href='login.php'>Prijavi se</a></li>";
             }
@@ -265,7 +271,7 @@
     <div class="container">
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-info">
-          <a href="index.html" class="logo d-flex align-items-center">
+          <a href="index.php" class="logo d-flex align-items-center">
             <span>NetaPics</span>
           </a>
           <p>Stvaramo svet lepšim mestom</p>

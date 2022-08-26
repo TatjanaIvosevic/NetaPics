@@ -151,7 +151,7 @@ function sendData($username, $email, $token)
     $message = "Data:\n\n user: $username \n \n www.vts.su.ac.rs";
     $message .= "\n\n to activate your account click on the link: http://localhost/NetaPics/active.php?token=$token";
     $to = $email;
-    $subject = "Registration at VTS";
+    $subject = "Registration at NetaPics";
     return mail($to, $subject, $message, $header);
     //mail($to,$subject,$message);
 

@@ -1,4 +1,4 @@
--- phpMyAdmin SQL Dump
+ -- phpMyAdmin SQL Dump
 -- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
@@ -48,13 +48,30 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `registered` tinyint(1) NOT NULL,
   `user_type` enum('du','u') NOT NULL,
-  `name` varchar(25) NOT NULL,
-  `surname` varchar(25) NOT NULL,
+  `firstname` varchar(25) NOT NULL,
+  `lastname` varchar(25) NOT NULL,
   `email` varchar(40) NOT NULL,
   `bio` varchar(255) NOT NULL,
   `files_downloaded` int(8) NOT NULL,
-  `files_uploaded` int(8) NOT NULL
+  `files_uploaded` int(8) NOT NULL,
+  `token` char(40) COLLATE utf8_unicode_ci NOT NULL,
+  `registration_expires` datetime NOT NULL,
+  `active` smallint(1) NOT NULL DEFAULT 0,
+  `code_password` char(40) COLLATE utf8_unicode_ci NOT NULL,
+  `new_password_expires` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Table structure for table `user_email_failure`
+--
+
+CREATE TABLE `user_email_failure` (
+  `id_user_email_failure` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `date_time_added` datetime NOT NULL,
+  `date_time_tried` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
 
 --
 -- Indexes for dumped tables
@@ -103,3 +120,17 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+--
+-- Indexes for table `user_email_failure`
+--
+ALTER TABLE `user_email_failure`
+  ADD PRIMARY KEY (`id_user_email_failure`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Constraints for table `user_email_failure`
+--
+ALTER TABLE `user_email_failure`
+  ADD CONSTRAINT `user_email_failure_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
