@@ -19,7 +19,7 @@ if (isset($_POST['upload'])){
 
     if (in_array($imgActualExt, $allowed)) {
         if ($imgError === 0) {
-            if ($imgSize < 1000000) {
+            if ($imgSize < 10000000) {
                 $imgNameNew = uniqid('', true).".".$imgActualExt;
                 $imgDestination = 'photos/'.$imgNameNew;
                 move_uploaded_file($imgTmpName, $imgDestination);

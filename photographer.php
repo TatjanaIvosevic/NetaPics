@@ -52,7 +52,7 @@ session_start();
         <ul>
             <li><a href="index.php">Početna</a></li>
             <li><a href="about.php">O nama</a></li>
-            <li><a href="photographer.php" class="active">Fotografi</a></li>
+            <li><a href="photographer.php" class="active">Fotografije</a></li>
             <?php
             if (isset($_SESSION["id_user"])) {
                 echo "<li><a href='profile.php'>Moj profil</a></li>";
@@ -78,7 +78,7 @@ session_start();
         <div class="container position-relative">
           <div class="row d-flex justify-content-center">
             <div class="col-lg-6 text-center">
-              <h2>Fotografi</h2>
+              <h2>Fotografije</h2>
               <p>Učinite uspomene večnim</p>
             </div>
           </div>
@@ -88,7 +88,7 @@ session_start();
         <div class="container">
           <ol>
             <li><a href="index.php">Početna</a></li>
-            <li>Fotografi</li>
+            <li>Fotografije</li>
           </ol>
         </div>
       </nav>
@@ -100,22 +100,23 @@ session_start();
       <div class="container" data-aos="fade-up">
 
         <div class="section-header">
-          <span>Svi fotografi</span>
-          <h2>Svi fotografi</h2>
+          <span>Sve fotografije</span>
+          <h2>Sve fotografije</h2>
 
         </div>
 
         <div class="row gy-4">
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/storage-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Storage</a></h3>
-              <p>Cumque eos in qui numquam. Aut aspernatur perferendis sed atque quia voluptas quisquam repellendus temporibus itaqueofficiis odit</p>
-            </div>
-          </div><!-- End Card Item -->
+            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                <div class="card">
+                    <div class="card-img">
+                        <img src="assets/img/storage-service.jpg" alt="" class="img-fluid">
+                    </div>
+                    <h3 align="center"><a class="stretched-link">Img title</a></h3>
+                    <p align="center">Author fullname, date uploaded</p>
+                    <a align="center" style="background: var(--color-primary); padding: 8px 20px; margin-left: 100px; margin-right: 100px; border-radius: 4px; color: #fff;">Preuzmi</a>
+                </div>
+            </div><!-- End Card Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <div class="card">
@@ -194,7 +195,7 @@ session_start();
         <ul>
             <li><a href="index.php">Početna</a></li>
             <li><a href="about.php">O nama</a></li>
-            <li><a href="photographer.php">Fotografi</a></li>
+            <li><a href="photographer.php">Fotografije</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">

@@ -108,6 +108,34 @@ session_start();
           </div>
 <br><br><br>
 
+          <!-- ======= Stats Counter Section ======= -->
+          <section id="stats-counter" class="stats-counter pt-0">
+              <div class="container" data-aos="fade-up">
+
+                  <div class="row gy-4">
+
+                      <div class="col-lg-6 col-md-6">
+                          <div class="stats-item text-center w-100 h-100">
+                              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+                              <p>Tvojih fotografija</p>
+                          </div>
+                      </div><!-- End Stats Item -->
+
+                      <div class="col-lg-6 col-md-6">
+                          <div class="stats-item text-center w-100 h-100">
+                              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+                              <p>Preuzimanja</p>
+                          </div>
+                      </div><!-- End Stats Item -->
+
+
+                  </div>
+
+              </div>
+          </section><!-- End Stats Counter Section -->
+
+
+
           <div class="section-header">
               <span>Tvoje fotografije</span>
               <h2>Tvoje fotografije</h2>
@@ -146,6 +174,8 @@ session_start();
 
       </div>
     </section><!-- End Services Section -->
+
+
   </main><!-- End #main -->
 
 <!-- ======= Footer ======= -->
@@ -169,7 +199,7 @@ session_start();
         <ul>
             <li><a href="index.php">Početna</a></li>
             <li><a href="about.php">O nama</a></li>
-            <li><a href="photographer.php">Fotografi</a></li>
+            <li><a href="photographer.php">Fotografije</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">

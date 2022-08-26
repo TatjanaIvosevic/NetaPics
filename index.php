@@ -286,7 +286,7 @@ session_start();
           <ul>
             <li><a href="index.php">Početna</a></li>
             <li><a href="about.php">O nama</a></li>
-            <li><a href="photographer.php">Fotografi</a></li>
+              <li><a href="photographer.php">Fotografije</a></li>
           </ul>
         </div>
         <div class="col-lg-3 col-md-12 footer-contact text-center text-md-start">
