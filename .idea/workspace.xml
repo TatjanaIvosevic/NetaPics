@@ -7,7 +7,8 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ComposerSettings">
+  <component name="ComposerSettings" synchronizationState="SYNCHRONIZE">
+    <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -22,6 +23,12 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration">
+    <include_path>
+      <path value="$PROJECT_DIR$/vendor/composer" />
+      <path value="$PROJECT_DIR$/vendor/gilbitron/easycsrf" />
+    </include_path>
   </component>
   <component name="ProjectId" id="2B3rfBM5mFX67urI2DADcrDeZv2" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
@@ -65,7 +72,8 @@
       <workItem from="1661416540816" duration="19499000" />
       <workItem from="1661527235738" duration="3284000" />
       <workItem from="1661531303496" duration="10630000" />
-      <workItem from="1661792204130" duration="12354000" />
+      <workItem from="1661792204130" duration="17055000" />
+      <workItem from="1661814137899" duration="452000" />
     </task>
     <servers />
   </component>

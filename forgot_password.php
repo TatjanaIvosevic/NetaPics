@@ -1,11 +1,5 @@
 <?php
-session_start();
 require_once 'config.php';
-
-$sessionProvider = new EasyCSRF\NativeSessionProvider();
-$easyCSRF = new EasyCSRF\EasyCSRF($sessionProvider);
-
-$token = $easyCSRF->generate('my_token');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,11 +8,10 @@ $token = $easyCSRF->generate('my_token');
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>NetaPics - Prijavi se</title>
+  <title>NetaPics - Zaboravljena lozinka</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src 'self'; style-src 'self' fonts.googleapis.com 'unsafe-inline'; font-src 'self' data: fonts.gstatic.com;">
+
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -57,7 +50,7 @@ $token = $easyCSRF->generate('my_token');
         <ul>
             <li><a href="index.php">Početna</a></li>
             <li><a href="about.php">O nama</a></li>
-            <li><a href="photographer.php">Fotografije</a></li>
+            <li><a href="photographer.php">Fotografi</a></li>
         </ul>
     </nav><!-- .navbar -->
 
@@ -96,31 +89,22 @@ $token = $easyCSRF->generate('my_token');
           <div class="col-lg-5 quote-bg" style="background-image: url(assets/img/quote-bg.jpg);"></div>
 
           <div class="col-lg-7">
-            <form action="web.php" method="post" class="php-email-form">
-              <h3 align="center">Prijava</h3>
-              <p align="center">Nemaš nalog? <a href="registration.php">Klikni ovde da se registruješ.</a></p>
+            <form action="password_reset_request_inc.php" method="post" class="php-email-form">
+              <h3 align="center">Zaboravljena logika</h3>
               <br>
               <div class="row gy-4">
 
                 <div class="col-md-12">
-                  <label>Korisničko ime:</label>
-                  <input type="text" class="form-control" name="username" placeholder="Korisničko ime ili email" required>
+                  <label>Email:</label>
+                  <input type="email" class="form-control" name="email" placeholder="Email" required>
                 </div>
 
-                <div class="col-md-12">
-                  <label>Lozinka:</label>
-                  <input type="password" class="form-control" name="password" placeholder="Lozinka" required>
-                </div>
-
-                  <a href="forgot_password.php">Zaboravljena lozinka?</a>
-                  <input type="hidden" name="action" value="login">
-                  <input type="hidden" name="csrf" value="<?php echo $token; ?>">
                 <div class="col-md-12 text-center">
                   <div class="loading">Učitavanje...</div>
                   <div class="error-message"></div>
                   <div class="sent-message">Uspešna prijava!</div>
                     <a href=""></a>
-                  <button type="submit">Prijavi se</button>
+                  <button type="submit">Pošalji zahtev</button>
                 </div>
                 </div>
 

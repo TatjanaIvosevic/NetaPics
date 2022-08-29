@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'db_config.php';
 
 ?>
 <!DOCTYPE html>
@@ -13,7 +14,7 @@ session_start();
   <meta content="" name="description">
   <meta content="" name="keywords">
     <meta http-equiv="Content-Security-Policy"
-          content="default-src 'self'; style-src 'self' fonts.googleapis.com 'unsafe-inline'; font-src 'self' data: fonts.gstatic.com;">
+          content="default-src 'self' 'unsafe-inline'; style-src 'self' fonts.googleapis.com 'unsafe-inline'; font-src 'self' data: fonts.gstatic.com;">
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -107,69 +108,28 @@ session_start();
         </div>
 
         <div class="row gy-4">
-
-            <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-                <div class="card">
-                    <div class="card-img">
-                        <img src="assets/img/storage-service.jpg" alt="" class="img-fluid">
-                    </div>
-                    <h3 align="center"><a class="stretched-link">Img title</a></h3>
-                    <p align="center">Author fullname, date uploaded</p>
-                    <a align="center" style="background: var(--color-primary); padding: 8px 20px; margin-left: 100px; margin-right: 100px; border-radius: 4px; color: #fff;">Preuzmi</a>
-                </div>
-            </div><!-- End Card Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <?php
+            $sql = "SELECT * FROM images";
+            $query = mysqli_query($connection, $sql);
+            $data = mysqli_fetch_all($query, MYSQLI_ASSOC);
+            $id_user = $_SESSION['id_user'] ?? '';
+            ?>
+            <?php
+            foreach ($data as $item) {
+                echo '
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
             <div class="card">
               <div class="card-img">
-                <img src="assets/img/logistics-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Logistics</a></h3>
-              <p>Asperiores provident dolor accusamus pariatur dolore nam id audantium ut et iure incidunt molestiae dolor ipsam ducimus occaecati nisi</p>
-            </div>
+                <img src="'.$item['image'].'" alt="" class="img-fluid">
+              </div>              
+               ';
+                if($id_user)
+                    echo '<h3 style="cursor: pointer" onclick="window.location.href = \'download.php?id='.$item['id'].'\'"><a align="center" style="background: var(--color-primary); padding: 8px 20px; margin-left: 100px; margin-right: 100px; border-radius: 4px; color: #fff;">Preuzmi</a></h3>';
+            echo '</div>
           </div><!-- End Card Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/cargo-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Cargo</a></h3>
-              <p>Dicta quam similique quia architecto eos nisi aut ratione aut ipsum reiciendis sit doloremque oluptatem aut et molestiae ut et nihil</p>
-            </div>
-          </div><!-- End Card Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/trucking-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Trucking</a></h3>
-              <p>Dicta quam similique quia architecto eos nisi aut ratione aut ipsum reiciendis sit doloremque oluptatem aut et molestiae ut et nihil</p>
-            </div>
-          </div><!-- End Card Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/packaging-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Packaging</a></h3>
-              <p>Illo consequuntur quisquam delectus praesentium modi dignissimos facere vel cum onsequuntur maiores beatae consequatur magni voluptates</p>
-            </div>
-          </div><!-- End Card Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="card">
-              <div class="card-img">
-                <img src="assets/img/warehousing-service.jpg" alt="" class="img-fluid">
-              </div>
-              <h3><a href="service-details.html" class="stretched-link">Warehousing</a></h3>
-              <p>Quas assumenda non occaecati molestiae. In aut earum sed natus eatae in vero. Ab modi quisquam aut nostrum unde et qui est non quo nulla</p>
-            </div>
-          </div><!-- End Card Item -->
-
-        </div>
+                ';
+            }
+            ?>
 
       </div>
     </section><!-- End Services Section -->

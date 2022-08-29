@@ -195,7 +195,7 @@ $token = $easyCSRF->generate('my_token');
                     echo '</a></h3></div>
 <form action="delete_image.php" method="post">
 <input name="id" type="hidden" value="'.$row["id"].'" .></input>
-<button type="submit" align="center" style="background: red; padding: 8px 20px; margin: 0 auto; display: flex; justify-content: center; width: 200px; border-radius: 4px; color: #fff;">Obriši</button>
+<button type="submit" align="center" style="background: darkred; padding: 8px 20px; margin: 0 auto; display: flex; justify-content: center; width: 200px; border-radius: 4px; color: #fff;">Obriši</button>
 </form>
 </div>';
                 }

@@ -25,7 +25,7 @@ function checkUserLogin($username, $enteredPassword)
     global $connection;
 
     $sql = "SELECT id, password FROM users 
-            WHERE username = '$username'
+            WHERE (username = '$username' OR email = '$username')
             AND active=1 LIMIT 0,1";
 
     $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
@@ -53,12 +53,12 @@ function checkUserLogin($username, $enteredPassword)
  * @param $username
  * @return bool
  */
-function existsUser($username)
+function existsUser($username, $email)
 {
     global $connection;
 
     $sql = "SELECT id FROM users
-            WHERE username = '$username' AND (registration_expires>now() OR active ='1')";
+            (WHERE username = '$username' OR email = '$email') AND (registration_expires>now() OR active ='1')";
 
     $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 
@@ -111,10 +111,10 @@ function createCode($length)
     $i = 0;
     $code = "";
 
-    /*    
+    /*
       48-57  = 0 - 9
       65-90  = A - Z
-      97-122 = a - z        
+      97-122 = a - z
     */
 
     $div = mt_rand(3, 9); // 3
@@ -156,7 +156,7 @@ function sendData($username, $email, $token)
     //mail($to,$subject,$message);
 
     /*
-    
+
     1 is urgent, 3 is normal
 
     https://github.com/Synchro/PHPMailer

@@ -31,7 +31,7 @@ if ($action != "" AND in_array($action, $actions)) {
             $username = mysqli_real_escape_string($connection, trim($_POST["username"]));
             $password = mysqli_real_escape_string($connection, trim($_POST["password"]));
 
-            if (!empty($username) AND !empty($password)) {    
+            if (!empty($username) AND !empty($password)) {
                 $data = checkUserLogin($username, $password);
                 if ($data AND is_int($data['id'])) {
                     $_SESSION['username'] = $username;
@@ -56,7 +56,7 @@ if ($action != "" AND in_array($action, $actions)) {
             if(isset($_POST['username'])) {
                 $username = mysqli_real_escape_string($connection, trim($_POST["username"]));
             }
-           
+
             if(isset($_POST['firstname'])) {
                 $firstname = mysqli_real_escape_string($connection, trim($_POST["firstname"]));
             }
@@ -70,9 +70,9 @@ if ($action != "" AND in_array($action, $actions)) {
             }
 
             if (isset($_POST['passwordConfirm'])) {
-                $passwordConfirm = mysqli_real_escape_string($connection, trim($_POST["passwordConfirm"])); 
-            } 
-           
+                $passwordConfirm = mysqli_real_escape_string($connection, trim($_POST["passwordConfirm"]));
+            }
+
             if (isset($_POST['email'])) {
                  $email = mysqli_real_escape_string($connection, trim($_POST["email"]));
             }
@@ -113,7 +113,7 @@ if ($action != "" AND in_array($action, $actions)) {
                 redirection('registration.php?r=8');
             }
 
-            if (!existsUser($username)) {
+            if (!existsUser($username, $email)) {
                 $token = createCode(40);
                 $id_user_web = registerUser($username, $password, $firstname, $lastname, $email, $token, $message, $user_type);
                 if (sendData($username, $email, $token)) {
