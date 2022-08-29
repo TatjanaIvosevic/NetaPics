@@ -1,7 +1,7 @@
 <?php
+require_once 'config.php';
 global $connection;
 if (defined('SECRET') AND SECRET == 'gfhUi34xVbds23Qgk') {
-
     $connection = mysqli_connect(HOST, USER, PASSWORD, DATABASE);
     if (mysqli_connect_errno())
         echo "Failed to connect to MySQL: " . mysqli_connect_error();

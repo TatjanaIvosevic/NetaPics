@@ -1,5 +1,10 @@
 <?php
+session_start();
 require_once 'config.php';
+$sessionProvider = new EasyCSRF\NativeSessionProvider();
+$easyCSRF = new EasyCSRF\EasyCSRF($sessionProvider);
+
+$token = $easyCSRF->generate('my_token');
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +16,8 @@ require_once 'config.php';
     <title>NetaPics - Registruj se</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
-
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; style-src 'self' fonts.googleapis.com 'unsafe-inline'; font-src 'self' data: fonts.gstatic.com;">
     <!-- Favicons -->
     <link href="assets/img/favicon.png" rel="icon">
     <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -52,7 +58,7 @@ require_once 'config.php';
             <ul>
                 <li><a href="index.php" class="active">Početna</a></li>
                 <li><a href="about.php">O nama</a></li>
-                <li><a href="photographer.php">Fotografi</a></li>
+                <li><a href="photographer.php">Fotografije</a></li>
             </ul>
         </nav><!-- .navbar -->
 
@@ -139,6 +145,7 @@ require_once 'config.php';
 
                             </div>
 
+                            <input type="hidden" name="csrf" value="<?php echo $token; ?>">
                             <div class="col-md-12">
                                 <label>Napiši nešto o sebi:</label>
                                 <textarea class="form-control" name="message" rows="6" placeholder="Biografija" required></textarea>

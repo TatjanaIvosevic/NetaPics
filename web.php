@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "config.php";
+require_once "db_config.php";
 require "functions_def.php";
 
 $username = "";
@@ -16,12 +16,18 @@ $user_type = "";
 
 $referer = $_SERVER['HTTP_REFERER'];
 $action = mysqli_real_escape_string($connection, $_POST["action"]);
+$sessionProvider = new EasyCSRF\NativeSessionProvider();
+$easyCSRF = new EasyCSRF\EasyCSRF($sessionProvider);
 
 if ($action != "" AND in_array($action, $actions)) {
 
-
     switch ($action) {
         case "login":
+            try {
+                $easyCSRF->check('my_token', $_POST['csrf']);
+            } catch(Exception $e) {
+                redirection('login.php?r=12');
+            }
             $username = mysqli_real_escape_string($connection, trim($_POST["username"]));
             $password = mysqli_real_escape_string($connection, trim($_POST["password"]));
 
@@ -42,7 +48,11 @@ if ($action != "" AND in_array($action, $actions)) {
 
 
         case "register" :
-
+            try {
+                $easyCSRF->check('my_token', $_POST['csrf']);
+            } catch(Exception $e) {
+                redirection('registration.php?r=12');
+            }
             if(isset($_POST['username'])) {
                 $username = mysqli_real_escape_string($connection, trim($_POST["username"]));
             }

@@ -9,10 +9,11 @@ session_start();
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>NetaPics - Fotografi</title>
+  <title>NetaPics - Fotografije</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; style-src 'self' fonts.googleapis.com 'unsafe-inline'; font-src 'self' data: fonts.gstatic.com;">
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">

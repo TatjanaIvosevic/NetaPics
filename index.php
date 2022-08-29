@@ -12,7 +12,8 @@ session_start();
   <title>NetaPics - Početna</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; style-src 'self' fonts.googleapis.com 'unsafe-inline'; font-src 'self' data: fonts.gstatic.com;">
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -53,7 +54,7 @@ session_start();
         <ul>
           <li><a href="index.php" class="active">Početna</a></li>
           <li><a href="about.php">O nama</a></li>
-          <li><a href="photographer.php">Fotografi</a></li>
+          <li><a href="photographer.php">Fotografije</a></li>
             <?php
             if (isset($_SESSION["id_user"])) {
                 echo "<li><a href='profile.php'>Moj profil</a></li>";

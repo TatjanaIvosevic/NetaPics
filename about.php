@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once 'db_config.php';
 
 ?>
 <!DOCTYPE html>
@@ -12,7 +13,8 @@ session_start();
   <title>NetaPics - O nama</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; style-src 'self' fonts.googleapis.com 'unsafe-inline'; font-src 'self' data: fonts.gstatic.com;">
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
@@ -52,7 +54,7 @@ session_start();
         <ul>
             <li><a href="index.php">Početna</a></li>
             <li><a href="about.php" class="active">O nama</a></li>
-            <li><a href="photographer.php">Fotografi</a></li>
+            <li><a href="photographer.php">Fotografije</a></li>
             <?php
             if (isset($_SESSION["id_user"])) {
                 echo "<li><a href='profile.php'>Moj profil</a></li>";
@@ -134,7 +136,11 @@ session_start();
 
       </div>
     </section><!-- End About Us Section -->
-
+      <?php
+        $sql = "SELECT COUNT(users.id) as users, SUM(users.files_downloaded) as files_downloaded, SUM(users.files_uploaded) as files_uploaded FROM users;";
+        $query = mysqli_query($connection, $sql);
+        $results = mysqli_fetch_assoc($query);
+      ?>
     <!-- ======= Stats Counter Section ======= -->
     <section id="stats-counter" class="stats-counter pt-0">
       <div class="container" data-aos="fade-up">
@@ -143,21 +149,21 @@ session_start();
 
           <div class="col-lg-4 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $results['users'] ?>" data-purecounter-duration="1" class="purecounter"></span>
               <p>Korisnika na našem sajtu</p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-4 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $results['files_uploaded'] ?>" data-purecounter-duration="1" class="purecounter"></span>
               <p>Radova</p>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-4 col-md-6">
             <div class="stats-item text-center w-100 h-100">
-              <span data-purecounter-start="0" data-purecounter-end="1453" data-purecounter-duration="1" class="purecounter"></span>
+              <span data-purecounter-start="0" data-purecounter-end="<?= $results['files_downloaded'] ?>" data-purecounter-duration="1" class="purecounter"></span>
               <p>Preuzimanja</p>
             </div>
           </div><!-- End Stats Item -->

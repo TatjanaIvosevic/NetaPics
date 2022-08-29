@@ -1,4 +1,5 @@
 <?php
+require 'vendor/autoload.php';
 define("SITE", "https://localhost/master"); // enter your path on localhost
 define("HOST", "localhost");
 define("USER", "root");
@@ -20,5 +21,6 @@ $messages = [
     8 => 'Format e-mail adrese nije ispravan!',
     9 => 'Lozinka je previše kratka! Ukucaj lozinku dužine 8 karaktera!',
     10 => 'Postoji problem sa mail serverom. Pokušaćemo da pošaljemo email kasnije!',
-    11 => 'Tvoj nalog je uspešno aktiviran!'
+    11 => 'Tvoj nalog je uspešno aktiviran!',
+    12 => 'Greška prilikom obrade podataka'
 ];
