@@ -57,8 +57,7 @@ function existsUser($username, $email)
 {
     global $connection;
 
-    $sql = "SELECT id FROM users
-            (WHERE username = '$username' OR email = '$email') AND (registration_expires>now() OR active ='1')";
+    $sql = "SELECT id FROM users WHERE (username = '$username' OR email = '$email') AND (registration_expires > now() OR active = '1')";
 
     $result = mysqli_query($connection, $sql) or die(mysqli_error($connection));
 

@@ -49,7 +49,7 @@ if ($action != "" AND in_array($action, $actions)) {
 
         case "register" :
             try {
-                $easyCSRF->check('my_token', $_POST['csrf']);
+               $easyCSRF->check('my_token', $_POST['csrf']);
             } catch(Exception $e) {
                 redirection('registration.php?r=12');
             }
